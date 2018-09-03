@@ -14,7 +14,7 @@
 
 module.exports = {
   networks: {
-    testnet: {
+    ropsten: {
       host: 'localhost',
       port: 8545,
       from: process.env.DEFAULT_ACCOUNT,

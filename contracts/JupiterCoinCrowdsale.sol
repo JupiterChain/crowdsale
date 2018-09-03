@@ -6,6 +6,8 @@ import 'zeppelin-solidity/contracts/crowdsale/validation/TimedCrowdsale.sol';
 
 
 contract JupiterCoinCrowdsale is TimedCrowdsale, MintedCrowdsale {
+  uint256 constant maxGasPrice = 40000000000;  // 40 gwei
+
   constructor
     (
       uint256 _openingTime,
@@ -19,4 +21,17 @@ contract JupiterCoinCrowdsale is TimedCrowdsale, MintedCrowdsale {
     TimedCrowdsale(_openingTime, _closingTime) {
 
     }
+
+  function _preValidatePurchase(
+    address _beneficiary,
+    uint256 _weiAmount
+  ) internal {
+    // Prevent gas war among purchasers.
+    require(
+      tx.gasprice <= maxGasPrice,
+      "Gas price is too expensive. Don't be competitive."
+    );
+
+    super._preValidatePurchase(_beneficiary, _weiAmount);
+  }
 }

@@ -1,2 +1,1 @@
-# JPTC
-
+# Jupiter Token Crowdsale

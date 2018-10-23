@@ -48,4 +48,5 @@
 2. Test contracts in console
 
 	**`$ truffle console --network <nework name>`**
-
+	
+	**`[network name]> test`**
